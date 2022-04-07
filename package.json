@@ -1,7 +1,7 @@
 {
   "name": "anohana",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,10 +10,13 @@
   },
   "dependencies": {
     "axios": "^0.26.1",
-    "vue": "^3.2.25"
+    "file-reader-promise": "^1.0.1",
+    "qs": "^6.10.3",
+    "vue": "^3.2.25",
+    "vue3-cookies": "^1.0.6"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.3.0",
+    "@vitejs/plugin-vue": "^2.3.1",
     "eslint": "latest",
     "eslint-config-standard": "latest",
     "eslint-plugin-import": "latest",
