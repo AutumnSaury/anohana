@@ -1,5 +1,7 @@
 <script setup>
 import ProgressBar from '../ProgressBar.vue'
+import '../../assets/akkarin.png'
+
 const props = defineProps({
   plant: {
     type: Object,
@@ -71,7 +73,7 @@ const props = defineProps({
 
 .section .name::before,
 .section .name::after {
-  content: url("src/assets/forget-me-not.svg");
+  content: url("../../assets/forget-me-not.svg");
   margin: 0 10px;
 }
 

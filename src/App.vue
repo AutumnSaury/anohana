@@ -4,6 +4,11 @@ import api from './api/axios.js'
 import Swipe from './components/Swipe/SwipeContainer.vue'
 import FRP from 'file-reader-promise'
 import { useCookies } from 'vue3-cookies'
+import './assets/menma.png'
+import './assets/curve.svg'
+import './assets/forget-me-not.svg'
+import './assets/upload.svg'
+
 const { cookies } = useCookies()
 
 const fileUploaded = ref(false)
@@ -119,7 +124,7 @@ main {
 }
 
 footer {
-  background: #38b25d url(src/assets/menma.png) no-repeat 35% 0;
+  background: #38b25d url("./assets/menma.png") no-repeat 35% 0;
   background-size: contain;
   width: 100%;
   padding: 25px 0;
@@ -136,13 +141,13 @@ footer * {
 .banner {
   height: 45vh;
   width: 100vw;
-  background: #38b25d url(src/assets/curve.svg) no-repeat center;
+  background: #38b25d url("./assets/curve.svg") no-repeat center;
   z-index: -1;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
-  margin-bottom: -5vh;
+  /* margin-bottom: -5vh; */
 }
 
 .banner .titles {
@@ -168,7 +173,7 @@ footer * {
 }
 
 .banner .titles::after {
-  content: url("src/assets/forget-me-not.svg");
+  content: url("./assets/forget-me-not.svg");
   mix-blend-mode: color-dodge;
   position: absolute;
   top: -10px;
@@ -203,7 +208,7 @@ footer * {
   width: 7vw;
   overflow: hidden;
   border-radius: 50%;
-  background: #38b25d url(src/assets/upload.svg) no-repeat center center;
+  background: #38b25d url("./assets/upload.svg") no-repeat center center;
   background-size: 60%;
   right: 46.5vw;
   top: 45vh;

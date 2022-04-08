@@ -21,7 +21,6 @@ const props = defineProps({
 <style scoped>
 .container {
   display: flex;
-  /* flex-flow: row nowarp; */
   justify-content: space-around;
   margin: 0 auto;
   width: 75vw;
