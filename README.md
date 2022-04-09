@@ -33,7 +33,7 @@ server {
     index index.html;
     root /var/www/anohana;
 
-    location / {
+    location = / {
         index index.html;
     }
 
