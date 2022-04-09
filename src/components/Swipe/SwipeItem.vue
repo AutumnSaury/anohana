@@ -70,7 +70,7 @@ plant.baike_info.image_url = plant.baike_info.image_url.replace(/https:\/\/bkimg
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-  box-shadow: 0px 0px 7px 5px #ebebeb;
+  box-shadow: 0px 0px 10px 0px #848484;
 }
 
 .section .icon {
