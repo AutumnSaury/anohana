@@ -42,7 +42,7 @@ async function updatePlantInfo (e) {
   })
 }
 
-function handleReload () {
+function handleReload (e) {
   fileUploaded.value = false
 }
 </script>
@@ -73,11 +73,16 @@ function handleReload () {
         v-else
         :plants="plants"
       />
-      <button
-        v-show="fileUploaded"
-        id="reload"
-        @click="handleReload"
-      />
+      <Transition
+        enter-active-class="animate__animated animate__fadeInRight"
+        leave-active-class="animate__animated animate__fadeOutRight"
+      >
+        <button
+          v-show="fileUploaded"
+          id="reload"
+          @click="handleReload"
+        />
+      </Transition>
     </main>
 
     <footer>
@@ -97,11 +102,15 @@ function handleReload () {
 </template>
 
 <style scoped>
+
 #root {
   display: flex;
   min-height: 100vh;
+  width: 100vw;
   align-items: baseline;
   flex-direction: column;
+  position:relative;
+  overflow: hidden;
 }
 
 main,
