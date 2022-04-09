@@ -71,6 +71,8 @@ plant.baike_info.image_url = plant.baike_info.image_url.replace(/https:\/\/bkimg
   flex-flow: column nowrap;
   justify-content: space-between;
   box-shadow: 0px 0px 10px 0px #848484;
+  min-width: 200px;
+  max-width: 35vmin;
 }
 
 .section .icon {
@@ -115,12 +117,12 @@ plant.baike_info.image_url = plant.baike_info.image_url.replace(/https:\/\/bkimg
 }
 
 .section .score .confidence {
-  font-size: 12px;
+  font-size: 0.75rem;
   text-align: center;
 }
 
 .section .info {
-  width: 18vw;
+  width: 85%;
   height: auto;
   display: flex;
   flex-flow: column nowrap;
@@ -131,7 +133,7 @@ plant.baike_info.image_url = plant.baike_info.image_url.replace(/https:\/\/bkimg
 
 .section .info .desc {
   margin: 20px auto;
-  font-size: 12px;
+  font-size: 0.75rem;
   text-align: center;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -145,18 +147,18 @@ plant.baike_info.image_url = plant.baike_info.image_url.replace(/https:\/\/bkimg
   padding: 10px 0;
   display: flex;
   margin: 0 auto;
-  flex-flow: column nowarp;
   justify-content: center;
   border-top: 1px solid lightgrey;
   height: 30px;
+  width: 100%;
 }
 
 .section .info .baike .bk_ref {
-  width: 18vw;
+  width: 85%;
   margin: auto;
   text-decoration: none;
   text-align: center;
-  font-size: 14px;
+  font-size: 0.9rem;
   color: grey;
 }
 
