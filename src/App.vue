@@ -48,6 +48,7 @@ async function handlePicUpdate (e) {
 
 function handleReload (e) {
   fileUploaded.value = false
+  bannerCls[1] = 'banner-default'
 }
 </script>
 
@@ -64,16 +65,21 @@ function handleReload (e) {
           </div>
         </div>
       </div>
-      <div
+      <Transition
         v-if="!fileUploaded"
-        class="upload"
+        enter-active-class="animate__animated animate__fadeIn"
+        leave-active-class="animate__animated animate__bounceOutUp"
       >
-        <input
-          type="file"
-          accept="image/*"
-          @change="handlePicUpdate"
+        <div
+          class="upload"
         >
-      </div>
+          <input
+            type="file"
+            accept="image/*"
+            @change="handlePicUpdate"
+          >
+        </div>
+      </Transition>
       <Swipe
         v-else
         :plants="plants"
