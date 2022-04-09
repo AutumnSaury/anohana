@@ -1,6 +1,7 @@
 <script setup>
 import ProgressBar from '../ProgressBar.vue'
-import '../../assets/akkarin.png'
+import akkarin from '../../../src/assets/akkarin.png'
+import { reactive } from 'vue'
 
 const props = defineProps({
   plant: {
@@ -8,17 +9,33 @@ const props = defineProps({
     required: true
   }
 })
+
+const plant = reactive(props.plant)
+if (plant.name === '非植物') {
+  plant.baike_info = {
+    baike_url: window.location.href,
+    image_url: akkarin,
+    description: '这张图片似乎并不包含植物相关的内容，至少度娘是这么想的。'
+  }
+} else if (Object.keys(plant.baike_info).length === 0) {
+  plant.baike_info = {
+    baike_url: window.location.href,
+    image_url: akkarin,
+    description: '百度百科没有该植物的词条，大概。'
+  }
+}
+plant.baike_info.image_url = plant.baike_info.image_url.replace(/https:\/\/bkimg\.cdn\.bcebos\.com\/pic/, '/3rd/bd-bkimg')
 </script>
 
 <template>
   <div class="section">
     <img
-      :src="props.plant.baike_info.image_url"
-      :alt="props.plant.name"
+      :src="plant.baike_info.image_url"
+      :alt="plant.name"
       class="icon"
     >
     <div class="name">
-      {{ props.plant.name }}
+      {{ plant.name }}
     </div>
     <div class="score">
       <ProgressBar
@@ -27,15 +44,15 @@ const props = defineProps({
         :max="1"
         :color="'green'"
       />
-      <span class="confidence">置信度: {{ (props.plant.score * 100).toFixed(1) }}%</span>
+      <span class="confidence">置信度: {{ (plant.score * 100).toFixed(1) }}%</span>
     </div>
     <div class="info">
       <div class="desc">
-        {{ props.plant.baike_info.description }}
+        {{ plant.baike_info.description }}
       </div>
       <div class="baike">
         <a
-          :href="props.plant.baike_info.baike_url"
+          :href="plant.baike_info.baike_url"
           class="bk_ref"
           title="度娘百科"
         >前往百度百科了解更多内容</a>
