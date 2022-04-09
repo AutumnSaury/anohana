@@ -121,7 +121,9 @@ footer * {
 .banner {
   height: 50vh;
   width: 100vw;
-  background: #38b25d url("./assets/curve.svg") no-repeat center;
+  background-image: url("./assets/curve.svg"), linear-gradient(135deg, #8bdaa3, #38b25d);
+  background-repeat: no-repeat;
+  background-position: center;
   z-index: -1;
   position: relative;
   overflow: hidden;
