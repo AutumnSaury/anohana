@@ -66,11 +66,11 @@ function handleReload (e) {
         </div>
       </div>
       <Transition
-        v-if="!fileUploaded"
         enter-active-class="animate__animated animate__fadeIn"
         leave-active-class="animate__animated animate__bounceOutUp"
       >
         <div
+          v-show="!fileUploaded"
           class="upload"
         >
           <input
@@ -81,7 +81,7 @@ function handleReload (e) {
         </div>
       </Transition>
       <Swipe
-        v-else
+        v-show="fileUploaded"
         :plants="plants"
       />
       <Transition
