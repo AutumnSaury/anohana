@@ -11,7 +11,7 @@ Anohana是一个基于百度云提供的接口搭建的植物识别Web应用。
 ### 生产环境部署
 
 下载Release附带的压缩包，解压后对Web Server进行相应配置即可。  
-由于使用了百度的API，为绕过CORS限制，需在Web Server上进行相反向代理设置。  
+由于使用了百度的API，为绕过CORS限制，需在Web Server上进行反向代理设置。  
 以下Nginx配置可供参考：
 
 ``` nginx
