@@ -8,6 +8,8 @@ import './assets/menma.png'
 import './assets/curve.svg'
 import './assets/forget-me-not.svg'
 import './assets/upload.svg'
+import './assets/akkarin.png'
+import 'animate.css'
 
 const { cookies } = useCookies()
 
@@ -31,7 +33,6 @@ async function updatePlantInfo (e) {
   const filter = /data:image\/\w+;base64,/
   FRP.readAsDataURL(e.target.files[0]).then(async function (b64) {
     const processed = encodeURI(b64.replace(filter, ''))
-    console.log((await api.sendPicture(token, processed)).data.result)
     const result = (await api.sendPicture(token, processed)).data.result
     plants.length = 0
     if (result.length === 1 && result[0].name === '非植物') {
@@ -40,7 +41,7 @@ async function updatePlantInfo (e) {
         score: result[0].score,
         baike_info: {
           baike_url: '',
-          image_url: 'src/assets/akkarin.png',
+          image_url: '../../assets/akkarin.png',
           description: '这张图片似乎并不包含植物相关的内容，至少度娘是这么想的。'
         }
       }
