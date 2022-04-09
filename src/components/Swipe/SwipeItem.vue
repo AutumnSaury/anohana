@@ -83,8 +83,8 @@ plant.baike_info.image_url = plant.baike_info.image_url.replace(/https:\/\/bkimg
 
 .section .name {
   font-weight: bold;
-  font-size: 32px;
-  margin: 10px auto 5px auto;
+  font-size: 2rem;
+  margin: 10px auto 0;
   text-align: center;
 }
 
@@ -98,12 +98,13 @@ plant.baike_info.image_url = plant.baike_info.image_url.replace(/https:\/\/bkimg
   display: inline-flex;
   flex-flow: column nowrap;
   width: 70%;
-  margin: 5px auto;
+  margin: 0 auto 5px;
   justify-content: space-around;
   margin-top: 10px;
   align-items: flex-end;
   position: relative;
 }
+
 .section .score * {
   display: inline-block;
   margin: 0 auto;
