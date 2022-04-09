@@ -8,7 +8,6 @@ import './assets/menma.png'
 import './assets/curve.svg'
 import './assets/forget-me-not.svg'
 import './assets/upload.svg'
-import './assets/akkarin.png'
 import 'animate.css'
 
 const { cookies } = useCookies()
@@ -35,28 +34,8 @@ async function updatePlantInfo (e) {
     const processed = encodeURI(b64.replace(filter, ''))
     const result = (await api.sendPicture(token, processed)).data.result
     plants.length = 0
-    if (result.length === 1 && result[0].name === '非植物') {
-      plants[0] = {
-        name: '非植物',
-        score: result[0].score,
-        baike_info: {
-          baike_url: '',
-          image_url: '../../assets/akkarin.png',
-          description: '这张图片似乎并不包含植物相关的内容，至少度娘是这么想的。'
-        }
-      }
-    } else {
-      for (const k in result) {
-        plants[k] = result[k]
-        if (Object.keys(plants[k].baike_info).length === 0) {
-          plants[k].baike_info = {
-            baike_url: '',
-            image_url: 'src/assets/akkarin.png',
-            description: '百度百科没有该植物的词条，大概。'
-          }
-        }
-        plants[k].baike_info.image_url = plants[k].baike_info.image_url.replace(/https:\/\/bkimg\.cdn\.bcebos\.com\/pic/, '/3rd/bd-bkimg')
-      }
+    for (const k in result) {
+      plants[k] = result[k]
     }
     fileUploaded.value = true
   })
@@ -140,7 +119,7 @@ footer * {
 }
 
 .banner {
-  height: 45vh;
+  height: 50vh;
   width: 100vw;
   background: #38b25d url("./assets/curve.svg") no-repeat center;
   z-index: -1;
@@ -148,7 +127,7 @@ footer * {
   overflow: hidden;
   display: flex;
   align-items: center;
-  /* margin-bottom: -5vh; */
+  margin-bottom: -5vh;
 }
 
 .banner .titles {
@@ -209,10 +188,11 @@ footer * {
   width: 7vw;
   overflow: hidden;
   border-radius: 50%;
-  background: #38b25d url("./assets/upload.svg") no-repeat center center;
+  background: #8bdaa3 url("./assets/upload.svg") no-repeat center center;
   background-size: 60%;
-  right: 46.5vw;
-  top: 45vh;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
 }
 
 .upload input {
