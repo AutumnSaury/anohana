@@ -15,6 +15,8 @@ const { cookies } = useCookies()
 
 const fileUploaded = ref(false)
 const plants = reactive([])
+const pic = ref('')
+const bannerCls = reactive(['banner', 'banner-default'])
 
 async function acquireAccessToken () {
   if (cookies.isKey('accessToken')) {
@@ -28,10 +30,11 @@ async function acquireAccessToken () {
   }
 }
 
-async function updatePlantInfo (e) {
+async function handlePicUpdate (e) {
   const token = await acquireAccessToken()
   const filter = /data:image\/\w+;base64,/
   FRP.readAsDataURL(e.target.files[0]).then(async function (b64) {
+    pic.value = `url(${b64})`
     const processed = encodeURI(b64.replace(filter, ''))
     const result = (await api.sendPicture(token, processed)).data.result
     plants.length = 0
@@ -39,6 +42,7 @@ async function updatePlantInfo (e) {
       plants[k] = result[k]
     }
     fileUploaded.value = true
+    bannerCls[1] = 'banner-uploaded'
   })
 }
 
@@ -50,7 +54,7 @@ function handleReload (e) {
 <template>
   <div id="root">
     <main>
-      <div class="banner">
+      <div :class="bannerCls">
         <div class="titles">
           <div class="title">
             Anohana
@@ -66,7 +70,8 @@ function handleReload (e) {
       >
         <input
           type="file"
-          @change="updatePlantInfo"
+          accept="image/*"
+          @change="handlePicUpdate"
         >
       </div>
       <Swipe
@@ -140,15 +145,26 @@ footer * {
 .banner {
   height: 50vh;
   width: 100vw;
-  background-image: url("./assets/curve.svg"), linear-gradient(135deg, #8bdaa3, #38b25d);
-  background-repeat: no-repeat;
-  background-position: center;
   z-index: -1;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
   margin-bottom: -5vh;
+}
+
+.banner-default {
+  background-image: url("./assets/curve.svg"), linear-gradient(135deg, #8bdaa3, #38b25d);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: 30em, contain;
+}
+
+.banner-uploaded {
+  background-image: url("./assets/curve.svg"), v-bind(pic);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: 30em, cover;
 }
 
 .banner .titles {
@@ -160,17 +176,19 @@ footer * {
   margin: 0 auto;
   color: white;
   text-align: center;
-  font-size: 7vw;
+  font-size: 7vmax;
   font-family: "Times New Roman", Times, serif;
   border-bottom: 3px white solid;
+  text-shadow: 0px 2px 2px rgba(0,0,0,0.14) , 0px 3px 1px rgba(0,0,0,0.12) , 0px 1px 5px rgba(0,0,0,0.2);
 }
 
 .banner .titles .subtitle {
   margin: 0 auto;
   color: white;
   text-align: center;
-  font-size: 2vw;
+  font-size: 2vmax;
   font-family: "Times New Roman", Times, serif;
+  text-shadow: 0px 2px 2px rgba(0,0,0,0.14) , 0px 3px 1px rgba(0,0,0,0.12) , 0px 1px 5px rgba(0,0,0,0.2);
 }
 
 .banner .titles::after {
