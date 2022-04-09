@@ -8,6 +8,7 @@ import './assets/menma.png'
 import './assets/curve.svg'
 import './assets/forget-me-not.svg'
 import './assets/upload.svg'
+import './assets/reload.svg'
 import 'animate.css'
 
 const { cookies } = useCookies()
@@ -40,6 +41,10 @@ async function updatePlantInfo (e) {
     fileUploaded.value = true
   })
 }
+
+function handleReload () {
+  fileUploaded.value = false
+}
 </script>
 
 <template>
@@ -67,6 +72,11 @@ async function updatePlantInfo (e) {
       <Swipe
         v-else
         :plants="plants"
+      />
+      <button
+        v-show="fileUploaded"
+        id="reload"
+        @click="handleReload"
       />
     </main>
 
@@ -107,7 +117,7 @@ footer {
   background: #38b25d url("./assets/menma.png") no-repeat 35% 0;
   background-size: contain;
   width: 100%;
-  padding: 25px 0;
+  padding: 2vh 0;
   display: flex;
   flex-flow: column wrap;
 }
@@ -202,5 +212,18 @@ footer * {
   top: 0;
   opacity: 0;
   font-size: 5vw;
+}
+
+#reload {
+  height: 4vmax;
+  width: 4vmax;
+  border-radius: 50%;
+  border: none;
+  background: #fff url('./assets/reload.svg') no-repeat center center;
+  background-size: 50%;
+  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.14) , 0px 3px 1px -2px rgba(0,0,0,0.12) , 0px 1px 5px 0px rgba(0,0,0,0.2) ;
+  position: absolute;
+  right: 2vw;
+  bottom: 10vh;
 }
 </style>
