@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   server: {
+    host: '::',
     port: 3777,
     proxy: {
       '/3rd/bd-auth': {
