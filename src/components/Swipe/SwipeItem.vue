@@ -14,7 +14,7 @@ const pos = ref('')
 const iconCls = ref('icon')
 
 function handleIconMove (e) {
-  pos.value = `-${e.offsetX / image.value.naturalWidth * e.offsetX}px -${e.offsetY / image.value.naturalHeight * e.offsetY}px`
+  pos.value = `calc(-${image.value.naturalWidth / (window.innerWidth * 0.35) * e.offsetX / 2}px) calc(-${image.value.naturalHeight / (window.innerHeight * 0.18) * e.offsetY / 2}px)`
 }
 
 function handleIconHover () {
@@ -95,7 +95,7 @@ const urledImage = `url(${plant.baike_info.image_url})`
   justify-content: space-between;
   box-shadow: 0px 0px 10px 0px #848484;
   min-width: 200px;
-  max-width: 35vmin;
+  max-width: 35vw;
 }
 
 .icon {
