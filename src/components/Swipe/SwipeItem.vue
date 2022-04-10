@@ -34,7 +34,7 @@ const plant = computed(() => {
 })
 
 function handleIconMove (e) {
-  pos.value = `-${e.offsetX * 0.5}px -${image.value.naturalHeight / (window.innerHeight * 0.18) * e.offsetY / 2}px`
+  pos.value = `-${e.offsetX / 2}px -${image.value.naturalHeight / (e.target.clientHeight * 1.5) * e.offsetY / 2}px`
 }
 
 function handleIconHover () {
