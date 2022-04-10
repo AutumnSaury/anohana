@@ -1,7 +1,7 @@
 <script setup>
 import ProgressBar from '../ProgressBar.vue'
 import akkarin from '../../../src/assets/akkarin.png'
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 
 const props = defineProps({
   plant: {
@@ -9,6 +9,21 @@ const props = defineProps({
     required: true
   }
 })
+const image = ref()
+const pos = ref('')
+const iconCls = ref('icon')
+
+function handleIconMove (e) {
+  pos.value = `-${e.offsetX / image.value.naturalWidth * e.offsetX}px -${e.offsetY / image.value.naturalHeight * e.offsetY}px`
+}
+
+function handleIconHover () {
+  iconCls.value = 'icon-zoomin'
+}
+
+function handleIconLeave () {
+  iconCls.value = 'icon'
+}
 
 const plant = reactive(props.plant)
 if (plant.name === '非植物') {
@@ -25,14 +40,22 @@ if (plant.name === '非植物') {
   }
 }
 plant.baike_info.image_url = plant.baike_info.image_url.replace(/https:\/\/bkimg\.cdn\.bcebos\.com\/pic/, '/3rd/bd-bkimg')
+const urledImage = `url(${plant.baike_info.image_url})`
+
 </script>
 
 <template>
   <div class="section">
+    <div
+      :class="iconCls"
+      @mousemove="handleIconMove"
+      @mouseover.prevent="handleIconHover"
+      @mouseleave="handleIconLeave"
+    />
     <img
+      v-show="false"
+      ref="image"
       :src="plant.baike_info.image_url"
-      :alt="plant.name"
-      class="icon"
     >
     <div class="name">
       {{ plant.name }}
@@ -75,12 +98,24 @@ plant.baike_info.image_url = plant.baike_info.image_url.replace(/https:\/\/bkimg
   max-width: 35vmin;
 }
 
-.section .icon {
+.icon {
   height: 18vh;
   width: 100%;
   border-radius: 20px 20px 0 0;
-  object-fit: cover;
+  background-image: v-bind("urledImage");
+  background-size: cover;
+  background-position: center;
   margin: 0;
+}
+
+.icon-zoomin {
+  height: 18vh;
+  width: 100%;
+  border-radius: 20px 20px 0 0;
+  margin: 0;
+  background-image: v-bind("urledImage");
+  background-size: 150% auto;
+  background-position: v-bind(pos);
 }
 
 .section .name {
