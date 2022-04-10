@@ -1,7 +1,7 @@
 <script setup>
 import ProgressBar from '../ProgressBar.vue'
 import akkarin from '../../../src/assets/akkarin.png'
-import { reactive, ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const props = defineProps({
   plant: {
@@ -13,8 +13,28 @@ const image = ref()
 const pos = ref('')
 const iconCls = ref('icon')
 
+const plant = computed(() => {
+  const temp = props.plant
+  if (temp.name === '非植物') {
+    temp.baike_info = {
+      baike_url: window.location.href,
+      image_url: akkarin,
+      description: '这张图片似乎并不包含植物相关的内容，至少度娘是这么想的。'
+    }
+  } else if (Object.keys(temp.baike_info).length === 0) {
+    temp.baike_info = {
+      baike_url: window.location.href,
+      image_url: akkarin,
+      description: '百度百科没有该植物的词条，大概。'
+    }
+  }
+  temp.baike_info.image_url = temp.baike_info.image_url.replace(/https:\/\/bkimg\.cdn\.bcebos\.com\/pic/, '/3rd/bd-bkimg')
+  temp.urledImage = `url(${temp.baike_info.image_url})`
+  return temp
+})
+
 function handleIconMove (e) {
-  pos.value = `calc(-${image.value.naturalWidth / (window.innerWidth * 0.35) * e.offsetX / 2}px) calc(-${image.value.naturalHeight / (window.innerHeight * 0.18) * e.offsetY / 2}px)`
+  pos.value = `-${e.offsetX * 0.5}px -${image.value.naturalHeight / (window.innerHeight * 0.18) * e.offsetY / 2}px`
 }
 
 function handleIconHover () {
@@ -24,23 +44,6 @@ function handleIconHover () {
 function handleIconLeave () {
   iconCls.value = 'icon'
 }
-
-const plant = reactive(props.plant)
-if (plant.name === '非植物') {
-  plant.baike_info = {
-    baike_url: window.location.href,
-    image_url: akkarin,
-    description: '这张图片似乎并不包含植物相关的内容，至少度娘是这么想的。'
-  }
-} else if (Object.keys(plant.baike_info).length === 0) {
-  plant.baike_info = {
-    baike_url: window.location.href,
-    image_url: akkarin,
-    description: '百度百科没有该植物的词条，大概。'
-  }
-}
-plant.baike_info.image_url = plant.baike_info.image_url.replace(/https:\/\/bkimg\.cdn\.bcebos\.com\/pic/, '/3rd/bd-bkimg')
-const urledImage = `url(${plant.baike_info.image_url})`
 
 </script>
 
@@ -102,7 +105,7 @@ const urledImage = `url(${plant.baike_info.image_url})`
   height: 18vh;
   width: 100%;
   border-radius: 20px 20px 0 0;
-  background-image: v-bind("urledImage");
+  background-image: v-bind("plant.urledImage");
   background-size: cover;
   background-position: center;
   margin: 0;
@@ -113,7 +116,7 @@ const urledImage = `url(${plant.baike_info.image_url})`
   width: 100%;
   border-radius: 20px 20px 0 0;
   margin: 0;
-  background-image: v-bind("urledImage");
+  background-image: v-bind("plant.urledImage");
   background-size: 150% auto;
   background-position: v-bind(pos);
 }
