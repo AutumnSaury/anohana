@@ -191,10 +191,10 @@ footer * {
   margin: 0 auto;
   color: white;
   text-align: center;
-  font-size: 7vmax;
+  font-size: 8vmax;
   font-family: "Times New Roman", Times, serif;
   border-bottom: 3px white solid;
-  text-shadow: 0px 2px 2px rgba(0,0,0,0.14) , 0px 3px 1px rgba(0,0,0,0.12) , 0px 1px 5px rgba(0,0,0,0.2);
+  /* text-shadow: 0px 2px 2px rgba(0,0,0,0.14) , 0px 3px 1px rgba(0,0,0,0.12) , 0px 1px 5px rgba(0,0,0,0.2); */
 }
 
 .banner .titles .subtitle {
@@ -203,7 +203,7 @@ footer * {
   text-align: center;
   font-size: 2vmax;
   font-family: "Times New Roman", Times, serif;
-  text-shadow: 0px 2px 2px rgba(0,0,0,0.14) , 0px 3px 1px rgba(0,0,0,0.12) , 0px 1px 5px rgba(0,0,0,0.2);
+  /* text-shadow: 0px 2px 2px rgba(0,0,0,0.14) , 0px 3px 1px rgba(0,0,0,0.12) , 0px 1px 5px rgba(0,0,0,0.2); */
 }
 
 .banner .titles::after {
@@ -213,28 +213,6 @@ footer * {
   top: -10px;
   right: -10px;
 }
-
-/* .banner::before {
-  content: "";
-  background: #fff;
-  width: 100%;
-  position: absolute;
-  bottom: -8vh;
-  right: 48%;
-  height: 12vh;
-  transform: rotate(6deg);
-}
-
-.banner::after {
-  content: "";
-  background: #fff;
-  width: 100%;
-  position: absolute;
-  bottom: -8vh;
-  left: 48%;
-  height: 12vh;
-  transform: rotate(-6deg);
-} */
 
 .banner::after {
   content: "";
