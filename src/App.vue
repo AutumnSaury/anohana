@@ -17,6 +17,7 @@ const fileUploaded = ref(false)
 const plants = reactive([])
 const pic = ref('')
 const bannerCls = reactive(['banner', 'banner-default'])
+const reloadClass = ref('class')
 
 async function acquireAccessToken () {
   if (cookies.isKey('accessToken')) {
@@ -49,6 +50,11 @@ async function handlePicUpdate (e) {
 function handleReload (e) {
   fileUploaded.value = false
   bannerCls[1] = 'banner-default'
+}
+
+function handleReloadHover () {
+  reloadClass.value = 'reload-spin'
+  setTimeout(() => { reloadClass.value = 'class' }, 500)
 }
 </script>
 
@@ -91,7 +97,9 @@ function handleReload (e) {
         <button
           v-show="fileUploaded"
           id="reload"
+          :class="reloadClass"
           @click="handleReload"
+          @mouseenter="handleReloadHover"
         />
       </Transition>
     </main>
@@ -149,14 +157,15 @@ footer * {
 }
 
 .banner {
-  height: 50vh;
+  height: 60vh;
   width: 100vw;
   z-index: -1;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
-  margin-bottom: -5vh;
+  margin-bottom: -15vh;
+  border-radius: 0 0 60% 60%;
 }
 
 .banner-default {
@@ -205,14 +214,14 @@ footer * {
   right: -10px;
 }
 
-.banner::before {
+/* .banner::before {
   content: "";
   background: #fff;
   width: 100%;
   position: absolute;
-  bottom: -80px;
+  bottom: -8vh;
   right: 48%;
-  height: 200px;
+  height: 12vh;
   transform: rotate(6deg);
 }
 
@@ -221,16 +230,26 @@ footer * {
   background: #fff;
   width: 100%;
   position: absolute;
-  bottom: -80px;
+  bottom: -8vh;
   left: 48%;
-  height: 200px;
+  height: 12vh;
   transform: rotate(-6deg);
+} */
+
+.banner::after {
+  content: "";
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 10vh;
+  width:100vw;
+  position: absolute;
+  bottom: 0;
+  border-radius: 50%;
 }
 
 .upload {
   position: absolute;
-  height: 7vw;
-  width: 7vw;
+  height: 8vmax;
+  width: 8vmax;
   overflow: hidden;
   border-radius: 50%;
   background: #8bdaa3 url("./assets/upload.svg") no-repeat center center;
@@ -238,6 +257,7 @@ footer * {
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.1) , 0px 1px 2px 0px rgba(0,0,0,0.06) ;
 }
 
 .upload input {
@@ -254,9 +274,23 @@ footer * {
   border: none;
   background: #fff url('./assets/reload.svg') no-repeat center center;
   background-size: 50%;
-  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.14) , 0px 3px 1px -2px rgba(0,0,0,0.12) , 0px 1px 5px 0px rgba(0,0,0,0.2) ;
+  box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.14);
   position: absolute;
   right: 2vw;
   bottom: 10vh;
+}
+
+.reload-spin {
+  animation: rotate 0.5s;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>
