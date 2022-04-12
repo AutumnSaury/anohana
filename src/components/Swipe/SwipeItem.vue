@@ -7,11 +7,15 @@ const props = defineProps({
   plant: {
     type: Object,
     required: true
+  },
+  contract: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 })
 const image = ref()
 const pos = ref('')
-const iconCls = ref('icon')
 
 const plant = computed(() => {
   const temp = props.plant
@@ -34,26 +38,15 @@ const plant = computed(() => {
 })
 
 function handleIconMove (e) {
-  pos.value = `-${e.offsetX / 2}px -${image.value.naturalHeight / (e.target.clientHeight * 1.5) * e.offsetY / 2}px`
+  pos.value = `-${e.offsetX / 2}px -${image.value.naturalHeight * (e.target.clientWidth / image.value.naturalWidth) * 1.5 / e.target.clientHeight * e.offsetY / 2}px`
 }
-
-function handleIconHover () {
-  iconCls.value = 'icon-zoomin'
-}
-
-function handleIconLeave () {
-  iconCls.value = 'icon'
-}
-
 </script>
 
 <template>
-  <div class="section">
+  <div :class="{section: true, 'section-contract': props.contract}">
     <div
-      :class="iconCls"
+      :class="{icon: true, 'icon-contract': props.contract}"
       @mousemove="handleIconMove"
-      @mouseover.prevent="handleIconHover"
-      @mouseleave="handleIconLeave"
     />
     <img
       v-show="false"
@@ -66,13 +59,13 @@ function handleIconLeave () {
     <div class="score">
       <ProgressBar
         id="pg"
-        :value="props.plant.score"
+        :value="plant.score"
         :max="1"
         :color="'green'"
       />
       <span class="confidence">置信度: {{ (plant.score * 100).toFixed(1) }}%</span>
     </div>
-    <div class="info">
+    <div :class="{info: true, 'info-contract': props.contract}">
       <div class="desc">
         {{ plant.baike_info.description }}
       </div>
@@ -90,8 +83,9 @@ function handleIconLeave () {
 <style scoped>
 .section {
   background-color: #fff;
-  height: auto;
+  height: 259px;
   width: 20vw;
+  padding-top: 18vh;
   border-radius: 25px;
   display: flex;
   flex-flow: column nowrap;
@@ -99,6 +93,14 @@ function handleIconLeave () {
   box-shadow: 0px 0px 10px 0px #848484;
   min-width: 200px;
   max-width: 35vw;
+  transition: 0.5s height ease, 0.5s width ease, 0.5s padding-top ease;
+  position: relative;
+}
+
+.section-contract {
+  height: calc(3vmax + 75px);
+  padding-top: 3vmax;
+  width: 15vw;
 }
 
 .icon {
@@ -106,18 +108,26 @@ function handleIconLeave () {
   width: 100%;
   border-radius: 20px 20px 0 0;
   background-image: v-bind("plant.urledImage");
-  background-size: cover;
+  background-color: #fff;
+  background-size: 100%;
   background-position: center;
   margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.5s all ease
 }
 
-.icon-zoomin {
-  height: 18vh;
-  width: 100%;
-  border-radius: 20px 20px 0 0;
-  margin: 0;
-  background-image: v-bind("plant.urledImage");
-  background-size: 150% auto;
+.icon-contract {
+  height: 6vmax;
+  width: 6vmax;
+  border-radius: 50%;
+  top: -3vmax;
+  left: 4.5vmax;
+}
+
+.icon:hover {
+  background-size: 150%;
   background-position: v-bind(pos);
 }
 
@@ -161,12 +171,19 @@ function handleIconLeave () {
 
 .section .info {
   width: 85%;
-  height: auto;
+  height: 172px;
   display: flex;
+  overflow: hidden;
   flex-flow: column nowrap;
   align-items: baseline;
   margin: 0 auto;
   border-top: 1px solid lightgrey;
+  transition: 1s height ease, 0.5s opacity ease;
+}
+
+.info-contract {
+  height:0 !important;
+  opacity: 0;
 }
 
 .section .info .desc {
