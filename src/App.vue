@@ -62,14 +62,22 @@ function handleReloadHover () {
   <div id="root">
     <main>
       <div :class="bannerCls">
-        <div class="titles">
-          <div class="title">
-            Anohana
+        <Transition
+          enter-active-class="animate__animated animate__fadeIn"
+          leave-active-class="animate__animated animate__fadeOut"
+        >
+          <div
+            v-show="!fileUploaded"
+            class="titles"
+          >
+            <div class="title">
+              Anohana
+            </div>
+            <div class="subtitle">
+              The Flower We Saw That Day
+            </div>
           </div>
-          <div class="subtitle">
-            The Flower We Saw That Day
-          </div>
-        </div>
+        </Transition>
       </div>
       <Transition
         enter-active-class="animate__animated animate__fadeIn"
@@ -142,7 +150,7 @@ main {
 }
 
 footer {
-  background: #38b25d url("./assets/menma.png") no-repeat 35% 0;
+  background: #fff url("./assets/menma.png") no-repeat 35% 0;
   background-size: contain;
   width: 100%;
   padding: 2vh 0;
@@ -152,7 +160,7 @@ footer {
 
 footer * {
   text-align: center;
-  color: white;
+  color: #8bdaa3;
   font-size: 12px;
 }
 
@@ -176,10 +184,10 @@ footer * {
 }
 
 .banner-uploaded {
-  background-image: url("./assets/curve.svg"), v-bind(pic);
-  background-repeat: no-repeat, no-repeat;
-  background-position: center, center;
-  background-size: 30em, cover;
+  background-image: v-bind(pic);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .banner .titles {
@@ -194,7 +202,6 @@ footer * {
   font-size: 8vmax;
   font-family: "Times New Roman", Times, serif;
   border-bottom: 3px white solid;
-  /* text-shadow: 0px 2px 2px rgba(0,0,0,0.14) , 0px 3px 1px rgba(0,0,0,0.12) , 0px 1px 5px rgba(0,0,0,0.2); */
 }
 
 .banner .titles .subtitle {
@@ -203,7 +210,6 @@ footer * {
   text-align: center;
   font-size: 2vmax;
   font-family: "Times New Roman", Times, serif;
-  /* text-shadow: 0px 2px 2px rgba(0,0,0,0.14) , 0px 3px 1px rgba(0,0,0,0.12) , 0px 1px 5px rgba(0,0,0,0.2); */
 }
 
 .banner .titles::after {
@@ -232,9 +238,11 @@ footer * {
   border-radius: 50%;
   background: #8bdaa3 url("./assets/upload.svg") no-repeat center center;
   background-size: 60%;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
+  top: 46vh;
+  left:46vw;
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%); */
   box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.1) , 0px 1px 2px 0px rgba(0,0,0,0.06) ;
 }
 
