@@ -94,10 +94,15 @@ function handleReloadHover () {
           >
         </div>
       </Transition>
-      <Swipe
-        v-show="fileUploaded"
-        :plants="plants"
-      />
+      <Transition
+        enter-active-class="animate__animated animate__fadeInUpBig"
+        leave-active-class="animate__animated animate__fadeOutDownBig"
+      >
+        <Swipe
+          v-show="fileUploaded"
+          :plants="plants"
+        />
+      </Transition>
       <Transition
         enter-active-class="animate__animated animate__fadeInRight"
         leave-active-class="animate__animated animate__fadeOutRight"
@@ -132,7 +137,7 @@ function handleReloadHover () {
 
 #root {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
   align-items: baseline;
   flex-direction: column;
