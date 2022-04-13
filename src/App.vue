@@ -99,7 +99,7 @@ function handleReloadHover () {
         leave-active-class="animate__animated animate__fadeOutDownBig"
       >
         <Swipe
-          v-show="fileUploaded"
+          v-if="fileUploaded"
           :plants="plants"
         />
       </Transition>
