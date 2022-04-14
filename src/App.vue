@@ -172,12 +172,12 @@ footer * {
 .banner {
   height: 60vh;
   width: 100vw;
-  z-index: -1;
+  z-index: -10;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
-  margin-bottom: -15vh;
+  margin-bottom: -20vh;
   border-radius: 0 0 60% 60%;
 }
 

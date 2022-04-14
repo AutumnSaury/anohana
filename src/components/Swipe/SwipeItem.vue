@@ -53,7 +53,7 @@ function handleIconMove (e) {
       ref="image"
       :src="plant.baike_info.image_url"
     >
-    <div class="name">
+    <div :class="{name: true, 'name-contract': props.contract}">
       {{ plant.name }}
     </div>
     <div class="score">
@@ -84,7 +84,7 @@ function handleIconMove (e) {
 .section {
   background-color: #fff;
   height: 259px;
-  width: 20vw;
+  width: 30vw;
   padding-top: 18vh;
   border-radius: 25px;
   display: flex;
@@ -93,12 +93,12 @@ function handleIconMove (e) {
   box-shadow: 0px 0px 10px 0px #848484;
   min-width: 200px;
   max-width: 35vw;
-  transition: 0.5s height ease, 0.5s width ease, 0.5s padding-top ease;
+  transition: 0.5s all ease;
   position: relative;
 }
 
 .section-contract {
-  height: calc(3vmax + 75px);
+  height: calc(3vmax + 35px);
   padding-top: 3vmax;
   width: 15vw;
 }
@@ -115,7 +115,7 @@ function handleIconMove (e) {
   position: absolute;
   top: 0;
   left: 0;
-  transition: 0.5s all ease
+  transition: 0.5s all ease;
 }
 
 .icon-contract {
@@ -123,7 +123,9 @@ function handleIconMove (e) {
   width: 6vmax;
   border-radius: 50%;
   top: -3vmax;
-  left: 4.5vmax;
+  left: calc(7.5vw - 3vmax);
+  background-size: 100% !important;
+  background-position: center !important;
 }
 
 .icon:hover {
@@ -136,6 +138,11 @@ function handleIconMove (e) {
   font-size: 2rem;
   margin: 10px auto 0;
   text-align: center;
+  transition: 0.5s font-size ease;
+}
+
+.name-contract {
+  font-size: 1.5rem !important;
 }
 
 .section .name::before,
