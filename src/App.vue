@@ -155,10 +155,10 @@ main {
 }
 
 footer {
-  background: #fff url("./assets/menma.png") no-repeat 35% 0;
+  background: #fff url("./assets/menma.png") no-repeat 5vmin 0;
   background-size: contain;
   width: 100%;
-  padding: 2vh 0;
+  padding: 2vmin 0;
   display: flex;
   flex-flow: column wrap;
 }
