@@ -98,7 +98,7 @@ function handleIconMove (e) {
 }
 
 .section-contract {
-  height: calc(3vmax + 35px);
+  height: calc(3vmax + 45px);
   padding-top: 3vmax;
   width: 15vw;
 }
@@ -139,10 +139,11 @@ function handleIconMove (e) {
   margin: 10px auto 0;
   text-align: center;
   transition: 0.5s font-size ease;
+  white-space: nowrap;
 }
 
 .name-contract {
-  font-size: 1.5rem !important;
+  font-size: 1rem !important;
 }
 
 .section .name::before,

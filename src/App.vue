@@ -176,7 +176,7 @@ footer * {
   overflow: hidden;
   display: flex;
   align-items: center;
-  margin-bottom: -20vh;
+  margin-bottom: -25vh;
   border-radius: 0 0 60% 60%;
 }
 
