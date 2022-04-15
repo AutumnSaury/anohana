@@ -2,6 +2,10 @@
 
 Anohana是一个基于百度云提供的接口搭建的植物识别Web应用。
 
+## 使用指南
+
+选择文件，按提示输入百度的API Key和Secret Key即可使用。获取到的Access Token将被以Cookie形式保存在本地。
+
 ## 部署指南
 
 ### 开发环境部署  
