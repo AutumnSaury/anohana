@@ -134,14 +134,13 @@ function handleReloadHover () {
 </template>
 
 <style scoped>
-
 #root {
   display: flex;
   height: 100vh;
   width: 100vw;
   align-items: baseline;
   flex-direction: column;
-  position:relative;
+  position: relative;
   overflow: hidden;
 }
 
@@ -182,7 +181,8 @@ footer * {
 }
 
 .banner-default {
-  background-image: url("./assets/curve.svg"), linear-gradient(135deg, #8bdaa3, #38b25d);
+  background-image: url("./assets/curve.svg"),
+    linear-gradient(135deg, #8bdaa3, #38b25d);
   background-repeat: no-repeat, no-repeat;
   background-position: center, center;
   background-size: 30em, contain;
@@ -229,7 +229,7 @@ footer * {
   content: "";
   background-color: rgba(255, 255, 255, 0.5);
   height: 10vh;
-  width:100vw;
+  width: 100vw;
   position: absolute;
   bottom: 0;
   border-radius: 50%;
@@ -243,12 +243,13 @@ footer * {
   border-radius: 50%;
   background: #8bdaa3 url("./assets/upload.svg") no-repeat center center;
   background-size: 60%;
-  top: 46vh;
-  left:46vw;
+  top: calc(50vh - 4vmax);
+  left: calc(50vw - 4vmax);
   /* top: 50%;
   left: 50%;
   transform: translate(-50%,-50%); */
-  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.1) , 0px 1px 2px 0px rgba(0,0,0,0.06) ;
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1),
+    0px 1px 2px 0px rgba(0, 0, 0, 0.06);
 }
 
 .upload input {
@@ -263,9 +264,9 @@ footer * {
   width: 4vmax;
   border-radius: 50%;
   border: none;
-  background: #fff url('./assets/reload.svg') no-repeat center center;
+  background: #fff url("./assets/reload.svg") no-repeat center center;
   background-size: 50%;
-  box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.14);
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.14);
   position: absolute;
   right: 2vw;
   bottom: 10vh;

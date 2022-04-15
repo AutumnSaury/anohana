@@ -13,9 +13,7 @@ plants.unshift(plants.pop())
 
 <template>
   <div class="container">
-    <TransitionGroup
-      move-class="trans-all"
-    >
+    <TransitionGroup move-class="trans-all">
       <SwipeItem
         v-for="(item, index) in props.plants"
         :key="item"
@@ -70,7 +68,8 @@ plants.unshift(plants.pop())
 }
 
 .button:hover {
-  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.14) , 0px 1px 10px 0px rgba(0,0,0,0.12) , 0px 2px 4px -1px rgba(0,0,0,0.2);
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 10px 0px rgba(0, 0, 0, 0.12), 0px 2px 4px -1px rgba(0, 0, 0, 0.2);
 }
 
 .pos-shift {

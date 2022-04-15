@@ -43,9 +43,9 @@ function handleIconMove (e) {
 </script>
 
 <template>
-  <div :class="{section: true, 'section-contract': props.contract}">
+  <div :class="{ section: true, 'section-contract': props.contract }">
     <div
-      :class="{icon: true, 'icon-contract': props.contract}"
+      :class="{ icon: true, 'icon-contract': props.contract }"
       @mousemove="handleIconMove"
     />
     <img
@@ -53,7 +53,7 @@ function handleIconMove (e) {
       ref="image"
       :src="plant.baike_info.image_url"
     >
-    <div :class="{name: true, 'name-contract': props.contract}">
+    <div :class="{ name: true, 'name-contract': props.contract }">
       {{ plant.name }}
     </div>
     <div class="score">
@@ -65,7 +65,7 @@ function handleIconMove (e) {
       />
       <span class="confidence">置信度: {{ (plant.score * 100).toFixed(1) }}%</span>
     </div>
-    <div :class="{info: true, 'info-contract': props.contract}">
+    <div :class="{ info: true, 'info-contract': props.contract }">
       <div class="desc">
         {{ plant.baike_info.description }}
       </div>
@@ -123,7 +123,7 @@ function handleIconMove (e) {
   width: 6vmax;
   border-radius: 50%;
   top: -3vmax;
-  left: calc(7.5vw - 3vmax);
+  left: calc(100% / 2 - 3vmax);
   background-size: 100% !important;
   background-position: center !important;
 }
@@ -189,7 +189,7 @@ function handleIconMove (e) {
 }
 
 .info-contract {
-  height:0 !important;
+  height: 0 !important;
   opacity: 0;
 }
 
